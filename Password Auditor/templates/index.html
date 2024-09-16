@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Test</title>
+</head>
+<body>
+    <h1>Login Testing</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="url">Login URL:</label>
+        <input type="text" id="url" name="url" required><br><br>
+        <label for="username_field">Username Field Name:</label>
+        <input type="text" id="username_field" name="username_field" required><br><br>
+        <label for="password_field">Password Field Name:</label>
+        <input type="text" id="password_field" name="password_field" required><br><br>
+        <label for="file">Upload CSV File:</label>
+        <input type="file" id="file" name="file" accept=".csv" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
