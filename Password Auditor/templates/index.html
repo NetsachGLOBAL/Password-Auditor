@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Test & Password Strength</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login Test & Password Strength Checker</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="url">Login URL:</label>
+                <input type="text" id="url" name="url" placeholder="https://example.com/login" required>
+            </div>
+
+            <div class="form-group">
+                <label for="username_field">Username Field Name:</label>
+                <input type="text" id="username_field" name="username_field" placeholder="e.g., username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password_field">Password Field Name:</label>
+                <input type="text" id="password_field" name="password_field" placeholder="e.g., password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="file">Upload CSV File (username, password):</label>
+                <input type="file" id="file" name="file" required>
+            </div>
+
+            <button type="submit">Run Test</button>
+        </form>
+
+        {% if results %}
+        <h2>Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Status</th>
+                    <th>Password Strength</th>
+                    <th>Suggestions</th>
+                    <th>Suggested New Password (if Weak)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{ result.username }}</td>
+                    <td>{{ result.password }}</td>
+                    <td>{{ result.status }}</td>
+                    <td>{{ result.password_strength }}</td>
+                    <td>{{ result.suggestions | join(', ') }}</td>
+                    <td>{{ result.suggested_new_password if result.password_strength == 'Weak' else '' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>
